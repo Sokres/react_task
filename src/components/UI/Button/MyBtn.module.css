@@ -1,0 +1,20 @@
+.myBtn{
+    margin: 0;
+    padding: 0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: var(--color-btn);
+    color: var(--color-top);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.myBtn:hover{
+    background-color:#d28a95;
+}
+.myBtn:disabled{
+    background-color: #b5a8aa;
+    color: #9a8a8c;
+    cursor: default;
+}
