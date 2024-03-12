@@ -1,31 +1,34 @@
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import './styles/style.css'
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import TaskFilter from "./components/TaskFilter";
+import axios from "axios";
+import { useTask } from "./hooks/useTask";
+import TaskServ from "./API/TaskServ";
+import Loader from "./components/UI/Loader/Loader";
+import { useFetch } from "./hooks/useFetch";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'T Задача 1', body: 'yy Нужно выполнить эту задачу', time: '06.03.2024, 13:20', value: 1 },
-    { id: 2, title: 'B Задача 2', body: 'gg Нужно выполнить эту задачу', time: '01.03.2024, 13:20', value: 2 },
-    { id: 3, title: 'R Задача 3', body: 'oo Нужно выполнить эту задачу', time: '02.03.2024, 13:20', value: 3 },
-    { id: 4, title: 'A Задача 4', body: 'pp Нужно выполнить эту задачу', time: '03.03.2024, 13:20', value: 1 },
-  ])
+  const [tasks, setTasks] = useState([])
   const [filter, setFilter] = useState({ sort: '', serch: '' })
+  const [totalCount, setTotalCount] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [page, setPage] = useState(1)
+  const [fetch, elPreload, mesError] = useFetch( async () => {
+    const response = await TaskServ.getAll(limit, page);
+    setTasks(response.data)
+    console.log(response.headers['x-total-count'])
+    setTotalCount(response.headers['x-total-count'])
+  })
+  const sortAndSearchTask = useTask(tasks, filter.sort, filter.serch)
 
-  const sorterTask = useMemo(() => {
-    if (filter.sort) {
-      return [...tasks].sort((a, b) => typeof a[filter.sort] === 'string' ? a[filter.sort].localeCompare(b[filter.sort]) : a[filter.sort] - b[filter.sort]);
-    }
-    else {
-      return tasks;
-    }
-  }, [filter.sort, tasks]);
+  useEffect(() => {
+    fetch()
+  }, [filter])
 
-  const sortAndSearchTask = useMemo(() => {
-    return sorterTask.filter(task => task.title.toLowerCase().includes(filter.serch))
-  }, [sorterTask, filter.serch])
+  
   const createTask = (newTask) => {
     setTasks([...tasks, newTask]);
   }
@@ -36,10 +39,11 @@ function App() {
 
   return (
     <div className="app">
+      {/* <span className="loader"></span> */}
       <TaskForm create={createTask} />
       <TaskFilter filter={filter} setFilter={setFilter} />
-      <TaskList remove={removeTask} tasks={sortAndSearchTask} />
-
+      {mesError && <h1>Ошибка ${mesError}</h1>}
+      {elPreload ? <Loader /> : <TaskList remove={removeTask} tasks={sortAndSearchTask} />}
     </div>
   );
 }
