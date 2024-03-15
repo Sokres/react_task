@@ -4,10 +4,14 @@ import NewInput from './UI/Input/NewInput';
 
 const TaskFilter = ({ filter, setFilter }) => {
     return (
-        <div>
+        <div className='filter'>
+            <NewInput
+                placeholder='Поиск...'
+                onChange={e => setFilter({ ...filter, serch: e.target.value })}
+                value={filter.serch} />
             <NewSelect
                 value={filter.sort}
-                onChange={selectSort => setFilter({...filter, sort: selectSort})}
+                onChange={selectSort => setFilter({ ...filter, sort: selectSort })}
                 options={[
                     { name: 'по заголовку', value: 'title' },
                     { name: 'по описанию', value: 'body' },
@@ -16,10 +20,7 @@ const TaskFilter = ({ filter, setFilter }) => {
                 ]}
                 defaultOptionValue={'сортировака'} />
 
-            <NewInput
-                placeholder='Поиск...'
-                onChange={e => setFilter({...filter, serch: e.target.value})}
-                value={filter.serch} />
+
         </div>
     );
 };

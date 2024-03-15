@@ -29,7 +29,7 @@ p{
     border: 0;
     clip: rect(0 0 0 0);
 }
-.app{
+#root{
     max-width: 1200px;
     margin: 0 auto;
     height: 100svh;
@@ -40,6 +40,7 @@ p{
     padding: 0;
     list-style: none;
     flex-wrap: wrap;
+    margin: 0 -5px
 }
 .content__item{
     display: grid;
@@ -62,6 +63,10 @@ p{
     grid-column: 1/2;
     margin: 0;
     margin-top: 10px;
+}
+.boxForm{
+margin-top: 20px;
+margin-bottom: 40px;
 }
 .contnet__color{
     position: absolute;
@@ -139,6 +144,7 @@ p{
     margin: 0;
     padding: 0;
     border: none;
+    margin-left: 10px;
     padding: 10px 20px;
     box-shadow: 0 0 0 1px var(--color-text);
     border-radius: 10px;
@@ -179,7 +185,8 @@ p{
 }
 .boxForm__newTask{
     display: grid;
-    max-width: 700px;
+    max-width: 500px;
+    gap: 10px;
 }
 .app__noTask{
     color: var(--color-text);
@@ -193,7 +200,6 @@ p{
     font-size: 16px;
     min-height: calc(1.4em + 26px);
     padding: 9px 16px 10px;
-    margin-top: 10px;
     text-align: left;
     width: 400px;
     color: var(--color-text);
@@ -214,3 +220,48 @@ p{
     opacity: 0;
     transition: opacity 300ms ease-in;
   }
+  .btn-pagination{
+    margin: 0;
+    border: none;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: var(--color-btn);
+    color: var(--color-top);
+    cursor: pointer;
+    margin-right: 5px;
+    line-height: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+.btn-pagination:last-of-type{
+    margin-right: 0;
+}
+.btn-pagination:hover{
+    background-color:#d28a95;
+}
+.btn-pagination--active{
+    box-shadow: 0 0 0 1px var(--color-btn);
+    background-color: #e3d7d9;
+}
+.filter{
+    display: flex;
+    justify-content: space-between;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.navigation{
+    align-self: center;
+}
+.nigation__list{
+    color: var(--color-text);
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+
+}
+.nigation__list:first-of-type{
+    margin-right: 20px;
+}
+.nigation__list:hover{
+    color: var(--color-parag);
+}

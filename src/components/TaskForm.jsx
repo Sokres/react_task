@@ -36,26 +36,28 @@ const TaskForm = ({ create }) => {
     return (
         <div className="boxForm">
             <button className={form ? 'boxForm__btnOpen visually-hidden' : 'boxForm__btnOpen'} onClick={() => setForm(true)} >+ Добавить задачу</button>
-            <form className={form ? 'boxForm__newTask ' : 'boxForm__newTask visually-hiddenaaaaaa'} active="">
+            <form className={form ? 'boxForm__newTask ' : 'boxForm__newTask visually-hidden'} active="">
                 <NewInput onChange={e => setTask({ ...task, title: e.target.value })} value={task.title} placeholder='Название задачи' />
                 <NewInput onChange={e => setTask({ ...task, body: e.target.value })} value={task.body} placeholder='Описание задачи' />
                 <div className='form__box-radio'>
-                    <label  className="form__radio">Срочно
+                    <label className="form__radio">Срочно
                         <input defaultChecked className='visually-hidden form__radio--input' onChange={() => setTask({ ...task, value: 1 })} type="radio" name="radio-color" />
-                    <span className='form__radio--span'></span>
+                        <span className='form__radio--span'></span>
                     </label>
-                    <label  className="form__radio">Дом
+                    <label className="form__radio">Дом
                         <input className='visually-hidden form__radio--input' onChange={() => setTask({ ...task, value: 2 })} type="radio" name="radio-color" />
-                    <span className='form__radio--span'></span>
+                        <span className='form__radio--span'></span>
                     </label>
-                    <label  className="form__radio">Работа
+                    <label className="form__radio">Работа
                         <input className='visually-hidden form__radio--input' onChange={() => setTask({ ...task, value: 3 })} type="radio" name="radio-color" />
-                    <span className='form__radio--span'></span>
+                        <span className='form__radio--span'></span>
                     </label>
                 </div>
-                <button className='boxForm__btn-close' onClick={closeForm}>Закрыть</button>
-                <Button onClick={addNewTask}>Создать задачу </Button>
-                
+                <div>
+                    <Button onClick={addNewTask}>Создать задачу </Button>
+                    <button className='boxForm__btn-close' onClick={closeForm}>Закрыть</button>
+                </div>
+
             </form>
         </div>
     );
