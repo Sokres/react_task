@@ -9,6 +9,8 @@ import Loader from "../components/UI/Loader/Loader";
 import PaginationPage from "../components/UI/PaginationPage/PaginationPage";
 import { useFetch } from "../hooks/useFetch";
 import { useTask } from "../hooks/useTask";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from '../firebase';
 
 
 function Task() {
@@ -19,10 +21,11 @@ function Task() {
   const [page, setPage] = useState(1)
 
   const [fetch, elPreload, mesError] = useFetch(async () => {
-    const response = await TaskServ.getAll(limit, page);
-    setTasks(response.data);
-    const totalCount = response.headers['x-total-count'];
+    const [response, responsis, fireResp] = await TaskServ.getAll(limit, page);
+    setTasks(response);
+    const totalCount = Object.keys(responsis).length;
     setTotalPage(getTotalPage(totalCount, limit))
+    console.log(response);
   })
 
   const sortAndSearchTask = useTask(tasks, filter.sort, filter.serch);
@@ -35,7 +38,9 @@ function Task() {
   const createTask = (newTask) => {
     setTasks([...tasks, newTask]);
   }
-  const removeTask = (task) => {
+  const removeTask =  async(task) => {
+    console.log(task.id);
+    await deleteDoc(doc(db, "bd_task", task.id));
     setTasks(tasks.filter(t => (t.id !== task.id)))
   }
   const alterPage = (page) => {

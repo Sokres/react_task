@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import NewInput from './UI/Input/NewInput';
 import Button from "./UI/Button/Button";
-// import TaskBoxRadio from './TaskBoxRadio';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../firebase';
 
 const TaskForm = ({ create }) => {
 
@@ -16,14 +17,14 @@ const TaskForm = ({ create }) => {
         minute: 'numeric',
     });
 
-    const addNewTask = (e) => {
+    const addNewTask = async (e) => {
         e.preventDefault();
         const newTask = {
             ...task,
             id: Date.now(),
             time: formatter.format(date)
         }
-
+        await addDoc(collection(db, "bd_task"), newTask)
         create(newTask)
         setTask({ title: '', body: '' })
         setForm(false)
