@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/github.io/react_task.git/static/css/main.9681c3b2.css",
-    "main.js": "/github.io/react_task.git/static/js/main.562667ad.js",
-    "static/media/Logo.svg": "/github.io/react_task.git/static/media/Logo.20bac61c8bd2cb507decd19b119a0f8c.svg",
-    "static/media/trash.svg": "/github.io/react_task.git/static/media/trash.9acafc469d3d1b460600.svg",
-    "index.html": "/github.io/react_task.git/index.html",
-    "main.9681c3b2.css.map": "/github.io/react_task.git/static/css/main.9681c3b2.css.map",
-    "main.562667ad.js.map": "/github.io/react_task.git/static/js/main.562667ad.js.map"
+    "main.css": "/react_task/static/css/main.8abf6d1f.css",
+    "main.js": "/react_task/static/js/main.a1f90eac.js",
+    "static/media/Logo.svg": "/react_task/static/media/Logo.20bac61c8bd2cb507decd19b119a0f8c.svg",
+    "static/media/trash.svg": "/react_task/static/media/trash.9acafc469d3d1b460600.svg",
+    "index.html": "/react_task/index.html",
+    "main.8abf6d1f.css.map": "/react_task/static/css/main.8abf6d1f.css.map",
+    "main.a1f90eac.js.map": "/react_task/static/js/main.a1f90eac.js.map"
   },
   "entrypoints": [
-    "static/css/main.9681c3b2.css",
-    "static/js/main.562667ad.js"
+    "static/css/main.8abf6d1f.css",
+    "static/js/main.a1f90eac.js"
   ]
 }
