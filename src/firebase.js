@@ -4,8 +4,8 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDTUYB1vGK-vLqHzOKxn-AaM2COaRJ-cxs",
-  authDomain: "myproject-2a210.firebaseapp.com",
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
+  authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
   projectId: "myproject-2a210",
   storageBucket: "myproject-2a210.appspot.com",
   messagingSenderId: "884572802665",
@@ -14,6 +14,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Export firestore database
-// It will be imported into your react app whenever it is needed
+
 export const db = getFirestore(app);
