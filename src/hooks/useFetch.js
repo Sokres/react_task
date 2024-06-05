@@ -8,6 +8,7 @@ export const useFetch = (callback) => {
             await callback()
         } catch (e) {
             setMesError(e.message)
+            console.log(e);
         } finally {
             setUsePreload(false)
         }
